@@ -27,7 +27,7 @@ const Intro = () => {
                         <img src="/T4.webp" alt="" />
                     </div>
                     <div>
-                        <img src="/T4.webp" alt="" />
+                        <img src="/T7.png" alt="" />
                     </div>
                     <div>
                         <img src="/T4.webp" alt="" />

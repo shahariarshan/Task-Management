@@ -34,7 +34,8 @@ const router = createBrowserRouter([
         [
           {
             path:'create',
-            element:<CreateTask></CreateTask>
+            element:<CreateTask></CreateTask>,
+            loader:  ()=>fetch('http://localhost:5000/tasks')
           }
         ]
       }

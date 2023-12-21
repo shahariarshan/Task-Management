@@ -37,7 +37,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <a href="/">  <img className='h-16 w-16' src="../public/Untitled_design__1_-removebg-preview.png" alt="" /></a>
-                    <h1 className="text-xl font-bold -mr-10 lg:ml-2 ">Task <span className="text-green-500">Management</span></h1>
+                    <h1 className="text-xl font-bold  lg:ml-2 ">Task <span className="text-green-500">Management</span></h1>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
