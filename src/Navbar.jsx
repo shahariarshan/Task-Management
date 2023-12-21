@@ -1,13 +1,27 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from "./Provider/AuthProvider";
 
 const Navbar = () => {
-    
+    const { user, logOut } = useContext(AuthContext);
+    const handelLogOut = () => {
+        logOut()
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+
     const navLink =
         (
             <>
                 <li className="hover:text-green-400 link-hover "><a href='/'>Home</a></li>
                 <li className="hover:text-green-400 link-hover "><a>Contact</a></li>
                 <li className="hover:text-green-400 link-hover "><a href="/dashboard">Dashboard</a></li>
+
             </>
         )
     return (
@@ -31,11 +45,22 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn btn-ghost btn-circle hidden lg:flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    </button>
-                  
-                    <Link to="/login" className="btn bg-green-500 flex gap-2 text-white rounded-full px-6">Login</Link>
+
+
+
+                     <div>
+                   {
+                        user ? <>
+                            {/* <span>{user?.displayName}</span> */}
+                            <><NavLink onClick={handelLogOut}>LogOut</NavLink></>
+                        </> :
+                            <>
+                                <><NavLink className='btn hover:text-green-400 link-hover' to='/login'>Login</NavLink></>
+                            </>
+                    }
+                   </div> 
+                   
+                   
                 </div>
             </div>
         </header>

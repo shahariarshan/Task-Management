@@ -5,11 +5,14 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import router from './router/Router';
+import AuthProvider from './Provider/AuthProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
-     <div className='max-h-screen'>
+     <AuthProvider>
+      <div className='max-h-screen'>
       <RouterProvider router={router} />
      </div>
+     </AuthProvider>
   
 )

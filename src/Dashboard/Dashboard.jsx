@@ -1,27 +1,40 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../Navbar";
+import useAuth from '../hooks/useAuth'
 
 const Dashboard = () => {
+    const { user } = useAuth()
     return (
         <div>
-            <div className="flex min-h-screen lg:min-h-screen bg-emerald-500">
-                <div className=" min-h-screen bg-slate-400">
+            <div className="flex min-h-screen  ">
+                <div className=" w-64 min-h-screen bg-slate-400">
                     <ul className="menu text-xl p-4">
-                        <>
-                            <li>
-                                <NavLink to="">User Profile</NavLink>
+
+                       
+                            <h2 className="">User Profile</h2>
+                        <div className="avatar">
+                            <li className="w-24 mask mask-squircle">
+                                <img className="mx-auto items-center flex justify-center" src={user?.photoURL} />
                             </li>
+                            
+                        </div>
+                        <h2 className="overflow-x-hidden -px-20">{user?.displayName}</h2>
+                        <li>
+                                <NavLink to="/dashboard/create">Task Create </NavLink>
+                            </li>
+                        <>
+                        <div className="divider divider-info"></div>
                             <li>
                                 <NavLink to="/">Home</NavLink>
                             </li>
 
                         </>
-                        
+
                     </ul>
                 </div>
-                <div className="flex-1 ml-5">
+                <div className="flex-1">
                     <Navbar></Navbar>
-                    <Outlet className=' min-h-screen bg-emerald-300'></Outlet>
+                    <Outlet ></Outlet>
 
 
                 </div>

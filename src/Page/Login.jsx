@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import GoogleSignIn from "../hooks/GoogleSignIn";
+
+import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 
 const Login = () => {
+    const {signIn} =useAuth()
+    const navigate =useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname|| '/'
     const handelLoginForm = event => {
         event.preventDefault()
         const form = event.target
@@ -11,6 +20,21 @@ const Login = () => {
 
 
         event.target.reset();
+        signIn(email,password)
+        .then(result => {
+            const user =result.user
+            console.log(user);
+            // toast('User logged in')
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `User logged in`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        })
+        navigate (from,{replace:true})
+    
     }
 
     return (
@@ -51,6 +75,7 @@ const Login = () => {
                             <input className="btn  text-[#BB8506] border-0 border-b-4 btn-outline" type="submit" value="Login" />
                         </div>
                         <p className='text-center mb-4'>New Here? Please <Link to='/signUp' className='text-[#BB8506]'>SignUp</Link></p>
+                    <GoogleSignIn></GoogleSignIn>
                     </form>
 
                    
