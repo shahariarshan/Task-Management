@@ -19,8 +19,21 @@ const Navbar = () => {
         (
             <>
                 <li className="hover:text-green-400 link-hover "><a href='/'>Home</a></li>
-                <li className="hover:text-green-400 link-hover "><a>Contact</a></li>
                 <li className="hover:text-green-400 link-hover "><a href="/dashboard">Dashboard</a></li>
+                <li className="hover:text-green-400 link-hover "><a href="/contact">Contact</a></li>
+
+                <li>
+                    {
+                        user ? <>
+                            {/* <span>{user?.displayName}</span> */}
+                            <><NavLink onClick={handelLogOut}>LogOut</NavLink></>
+                        </> :
+                            <>
+                                <><NavLink className=' hover:text-green-400 link-hover' to='/login'>Login</NavLink></>
+                            </>
+                    }
+                </li>
+
 
             </>
         )
@@ -36,8 +49,8 @@ const Navbar = () => {
                             {navLink}
                         </ul>
                     </div>
-                    <a href="/">  <img className='h-16 w-16' src="../public/Untitled_design__1_-removebg-preview.png" alt="" /></a>
-                    <h1 className="text-xl font-bold  lg:ml-2 ">Task <span className="text-green-500">Management</span></h1>
+                    <a href="/">  <img className='lg:h-16 lg:w-16' src="../public/Untitled_design__1_-removebg-preview.png" alt="" /></a>
+                    <h1 className="text-xl font-bold sm:text-center mx-auto items-center lg:ml-2 ">Task <span className="text-green-500">Management</span></h1>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -45,22 +58,13 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-
-
-
-                     <div>
-                   {
-                        user ? <>
-                            {/* <span>{user?.displayName}</span> */}
-                            <><NavLink onClick={handelLogOut}>LogOut</NavLink></>
-                        </> :
-                            <>
-                                <><NavLink className='btn hover:text-green-400 link-hover' to='/login'>Login</NavLink></>
-                            </>
+                    {
+                        <div className="avatar">
+                            <div className="w-12 rounded-full">
+                                <img src={user?.photoURL} />
+                            </div>
+                        </div>
                     }
-                   </div> 
-                   
-                   
                 </div>
             </div>
         </header>

@@ -5,6 +5,7 @@ import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
 import SignUp from "../Page/Sign Up";
 import CreateTask from "../Dashboard/Create";
+import Contact from "../Page/Contact";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
        {
         path:'/',
         element:<Home></Home>
+       },
+       {
+        path:'/contact',
+        element:<Contact></Contact>
        }
       ],
 

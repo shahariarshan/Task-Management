@@ -1,11 +1,11 @@
 import Intro from "../Components/Intro";
-import Footer from "./Footer";
+import Contact from "../Page/Contact";
 
 const Home = () => {
     return (
         <div>
             <Intro/>
-            <Footer/>
+            <Contact/>
         </div>
     );
 };

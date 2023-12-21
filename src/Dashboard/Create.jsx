@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 
 import Swal from "sweetalert2";
 import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { useDrag, useDrop } from "react-dnd";
 
 
 
@@ -12,7 +14,8 @@ import { useLoaderData } from "react-router-dom";
 
 const CreateTask = () => {
     const allTasks = useLoaderData()
-    console.log(allTasks);
+    // console.log(allTasks);
+    const [tasks,setTasks] = ([])
     const [todo, setTodos] = useState([])
     const [inProgress, setInProgress] = useState([])
     const [complete, setComplete] = useState([])
@@ -167,6 +170,15 @@ const CreateTask = () => {
 export default CreateTask;
 
 const Section = ({ status, allTasks, todo, inProgress, complete }) => {
+    const [{ isOver }, drop] = useDrop(() => ({
+        accept:"task",
+        drop:(item)=>addItemToSection(item.id),
+        collect: (monitor) => ({
+          isOver: !!monitor.isOver()
+        })
+        
+      }))
+      
     let text = 'Todo';
     let bg = 'bg-slate-500';
     let tasksToMap = todo
@@ -180,10 +192,23 @@ const Section = ({ status, allTasks, todo, inProgress, complete }) => {
         bg = "bg-green-500"
         tasksToMap = complete
     }
+    const addItemToSection =(id)=>{
+        console.log("dropped",id,status);
+        // setTasks((prev)=>{
+        //     const mTasks =prev.map(t=>{
+        //         if(t.id ===id){
+        //             return{...t,status:status}
+        //         }
+        //         return t
+        //     })
+        //     return mTasks;
+        // })
+       
+    }
     return (
-        <div className={`w-64`}>
+        <div ref={drop} className={`w-64 rounded-md p-2 ${isOver ? "bg-slate-300":""}`}>
             <Header text={text} bg={bg} count={tasksToMap.length} />
-            {tasksToMap.length > 0 && tasksToMap.map(task => <Task key={task.id} task={task} allTasks={allTasks} />)}
+            {tasksToMap.length > 0 && tasksToMap.map(task => <Task key={task.id}  task={task}  allTasks={allTasks} />)}
         </div>
     )
 }
@@ -198,8 +223,17 @@ const Header = ({ text, bg, count }) => {
     )
 }
 const Task = ({ task, allTasks }) => {
+    console.log('task',task._id);
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type:"task",
+        item:{id:task._id},
+        collect: (monitor) => ({
+          isDragging: !!monitor.isDragging()
+        })
+      }))
+    //   console.log(isDragging);
     return (
-        <div className={`card  bg-base-100 relative p-4  shadow-md rounded-md cursor-grab`}>
+        <div ref={drag} className={`card  bg-base-100 relative p-4 ${isDragging? "opacity-25" :"opacity-100"}  shadow-md rounded-md cursor-grab`}>
             <div className="card-body">
                 <h2 className="card-title text-center mx-auto items-center">{task.Titles}</h2>
                 <p>{task.Description}</p>

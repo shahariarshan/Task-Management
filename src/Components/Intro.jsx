@@ -20,7 +20,8 @@ const Intro = () => {
     return (
        
 
-            <div className="">
+          <div>
+              <div className="">
                 <h2 className="text-center text-2xl lg:text-4xl mb-5 mt-5">Your Ultimate Task Management Solution</h2>
                 <Slider {...settings}>
                     <div>
@@ -38,8 +39,10 @@ const Intro = () => {
                     
 
                 </Slider>
-                <Link to="/login" className="btn mx-auto item-center  w-auto mt-7 bg-green-500 flex gap-2 text-white rounded-full px-6">Let’s Explore</Link>
             </div>
+                
+                <Link to="/login" className='btn btn-md mt-6 btn-warning mx-auto flex justify-center items-center'  >Let’s Explore</Link>
+          </div>
 
         
     );
