@@ -1,20 +1,29 @@
-import { useContext } from "react";
+
 import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../Provider/AuthProvider";
+import useAuth from "./useAuth";
+import useAxios from "./useAxios";
 
 
 const GoogleSignIn = () => {
-    const {googleSignIn}=useContext(AuthContext)
+    const {googleSignIn}=useAuth()
     const navigate = useNavigate()
+    const axo=useAxios()
     const handleGooglePopUp=()=>{
         googleSignIn()
         
+        .then(result =>{
+            console.log(result.user);
+            const userInfo={
+                email:result.user.email,
+                name:result.user.displayName
+            }
+            axo.post('/users',userInfo)
             .then(result =>{
                 console.log(result.data );
                 navigate('/')
             })
-      
+        })
     }
     return (
 

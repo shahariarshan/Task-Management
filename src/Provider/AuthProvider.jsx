@@ -6,12 +6,14 @@ import useAxios from "../hooks/useAxios";
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app);
+
  // eslint-disable-next-line react/prop-types
  const AuthProvider = ({ children }) => {
 const [user,setUser]=useState(null)
 const [loading,setLoading] =useState(true)
 const googleProvider = new GoogleAuthProvider();
 const axiosPublic =useAxios()
+
 // step1 : user create 
 
 const createUser = (email,password)=>{
@@ -52,6 +54,8 @@ useEffect(()=>{
         setUser(currentUser);
         console.log('current User', currentUser);
         setLoading(false)
+       
+    
         
     })
     return ()=>{

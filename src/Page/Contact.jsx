@@ -11,7 +11,7 @@ const Contact = () => {
         
          <h1 className='text-center mx-auto text-5xl font-serif' >Contact  </h1>
          <div className="divider divider-warning"></div>
-         <div className="flex justify-evenly mt-5 mb-5" name='Contact Me'>
+         <div className="flex justify-evenly hero-content flex-col lg:flex-row-reverse mt-5 mb-5" name='Contact Me'>
             <div className='space-y-3 mt-12'>
         <div className='flex'>
         <FaWhatsapp className='text-2xl mr-3'></FaWhatsapp><span>+01735519474</span>

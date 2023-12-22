@@ -18,7 +18,7 @@ const Dashboard = () => {
                             </li>
                             
                         </div>
-                        <h2 className="overflow-x-hidden -px-20">{user?.displayName}</h2>
+                        <small className="overflow-x-hidden -px-20">{user?.displayName}</small>
                         <li>
                                 <NavLink to="/dashboard/create">Task Create </NavLink>
                             </li>

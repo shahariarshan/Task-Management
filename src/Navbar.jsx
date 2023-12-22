@@ -19,7 +19,7 @@ const Navbar = () => {
         (
             <>
                 <li className="hover:text-green-400 link-hover "><a href='/'>Home</a></li>
-                <li className="hover:text-green-400 link-hover "><a href="/dashboard">Dashboard</a></li>
+                <li className="hover:text-green-400 link-hover "><a href="/dashboard/create">Dashboard</a></li>
                 <li className="hover:text-green-400 link-hover "><a href="/contact">Contact</a></li>
 
                 <li>
@@ -61,7 +61,17 @@ const Navbar = () => {
                     {
                         <div className="avatar">
                             <div className="w-12 rounded-full">
-                                <img src={user?.photoURL} />
+                                {
+                                    user?
+                                    <>
+                                     <img src='/blank-profile-picture-png.webp' alt="" />
+                                    </>
+                                    :
+                                    <>
+                                    <img src={user?.photoURL} />
+                                       
+                                    </>
+                                }
                             </div>
                         </div>
                     }
