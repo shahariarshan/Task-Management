@@ -3,9 +3,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
+import Aos from "aos";
+
 
 const Intro = () => {
-
+    useEffect(()=>{
+        Aos.init();
+      },[])
     const settings = {
         dots: true,
         infinite: true,
@@ -21,7 +27,7 @@ const Intro = () => {
        
 
           <div>
-              <div className="">
+              <div className="" data-aos="fade-down-right">
                 <h2 className="text-center text-2xl lg:text-4xl mb-5 mt-5">Your Ultimate Task Management Solution</h2>
                 <Slider {...settings}>
                     <div>

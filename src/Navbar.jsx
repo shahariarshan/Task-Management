@@ -19,20 +19,19 @@ const Navbar = () => {
         (
             <>
                 <li className="hover:text-green-400 link-hover "><a href='/'>Home</a></li>
-                <li className="hover:text-green-400 link-hover "><a href="/dashboard/create">Dashboard</a></li>
-                <li className="hover:text-green-400 link-hover "><a href="/contact">Contact</a></li>
-
-                <li>
+               
                     {
                         user ? <>
                             {/* <span>{user?.displayName}</span> */}
-                            <><NavLink onClick={handelLogOut}>LogOut</NavLink></>
+                            <li className="hover:text-green-400 link-hover "><NavLink to="/dashboard/create">Dashboard</NavLink></li>
+                            <li className="hover:text-green-400 link-hover "><a href="/contact">Contact</a></li>
+                            <li><NavLink onClick={handelLogOut}>LogOut</NavLink></li>
                         </> :
                             <>
-                                <><NavLink className=' hover:text-green-400 link-hover' to='/login'>Login</NavLink></>
+                                <li><NavLink className=' hover:text-green-400 link-hover' to='/login'>Login</NavLink></li>
                             </>
                     }
-                </li>
+               
 
 
             </>
@@ -64,11 +63,11 @@ const Navbar = () => {
                                 {
                                     user?
                                     <>
-                                     <img src='/blank-profile-picture-png.webp' alt="" />
+                                     <img src={user?.photoURL} alt="" />
                                     </>
                                     :
                                     <>
-                                    <img src={user?.photoURL} />
+                                    <img src='' />
                                        
                                     </>
                                 }

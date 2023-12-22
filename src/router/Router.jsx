@@ -6,6 +6,9 @@ import Dashboard from "../Dashboard/Dashboard";
 import SignUp from "../Page/Sign Up";
 import CreateTask from "../Dashboard/Create";
 import Contact from "../Page/Contact";
+import Update from "../Dashboard/Upadate";
+import PrivateRoute from "./PrivateRoute";
+
 
 const router = createBrowserRouter([
     {
@@ -34,14 +37,20 @@ const router = createBrowserRouter([
       },
       {
         path:'dashboard',
-        element:<Dashboard></Dashboard>,
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:
         [
           {
             path:'create',
-            element:<CreateTask></CreateTask>,
+            element:<PrivateRoute><CreateTask></CreateTask></PrivateRoute>,
             loader:  ()=>fetch('http://localhost:5000/tasks')
-          }
+          },
+          {
+            path:'/dashboard/tasks/:id',
+            element:<Update></Update>,
+            loader: ({params})=>fetch(`http://localhost:5000/tasks/${params.id}`)
+            
+          },
         ]
       }
     

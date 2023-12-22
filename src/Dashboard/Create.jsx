@@ -7,15 +7,17 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useDrag, useDrop } from "react-dnd";
 import useCarts from "../hooks/useTask";
+import useAuth from "../hooks/useAuth";
 
 const CreateTask = () => {
     const allTasks = useLoaderData()
     // console.log(allTasks);
-    
+    const {user} =useAuth()
     const [todo, setTodos] = useState([])
     const [inProgress, setInProgress] = useState([])
     const [complete, setComplete] = useState([])
-   
+    const all =allTasks.filter(data=>data.userEmail == user?.email)
+   console.log(all);
     useEffect(() => {
         const fTodos = allTasks.filter(task => task.status === 'todo')
         const fInProgress = allTasks.filter(task => task.status === 'progress')
@@ -43,10 +45,11 @@ const CreateTask = () => {
             status: data.status
 
         }
+        
         // console.log(task);
 
         const TaskRes = await useTask.post('/tasks', task);
-        console.log(TaskRes);
+        // console.log(TaskRes);
         if (TaskRes.data.insertedId) {
             // show the pop up
             Swal.fire({
@@ -274,7 +277,7 @@ const Task = ({ task }) => {
                 <h2 className="card-title text-center mx-auto items-center">{task.Titles}</h2>
                 <p>{task.Description}</p>
                 <p className="">{task.Deadline}</p>
-                <button className="absolute bottom-1 left-8"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  stroke="currentColor" className="w-6 h-6">
+                <button  className="absolute bottom-1 left-8"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  stroke="currentColor" className="w-6 h-6">
                     <path   d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
                 </button>
